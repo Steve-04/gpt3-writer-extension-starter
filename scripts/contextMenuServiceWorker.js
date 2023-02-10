@@ -11,7 +11,7 @@ const getKey = () => {
 
 const sendMessage = (content) => {
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    const activeTab = tabs[0].id;
+    const activeTab = tabs[0]?.id;
 
     chrome.tabs.sendMessage(
       activeTab,
@@ -44,7 +44,7 @@ const generate = async (prompt) => {
     });
       
     const completion = await completionResponse.json();
-    return completion.choices.pop();
+    return completion?.choices?.pop();
 }
 
 const generateCompletionAction = async (info) => {
